@@ -23,6 +23,8 @@ public:
 
     Vector3d getPixel(Vector4d point);
 
+    Uint32 mixColors(Uint32 color1, Uint32 color2, double t);
+
     void drawPoint(int x, int y, double z, Uint32 color);
     void drawPixelLine(Vector3d point1, Vector3d point2, Uint32 color1, Uint32 color2);
     void drawTriangle(Vector3d point1, Vector3d point2, Vector3d point3, Uint32 color1, Uint32 color2, Uint32 color3);
