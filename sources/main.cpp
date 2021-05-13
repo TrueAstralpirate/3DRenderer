@@ -3,20 +3,18 @@
 #include <iostream>
 #include <random>
 
-const Vector4d MOVEFORWARD = Vector4d(0, 0, -0.025, 0);
-const Vector4d MOVEBACKWARDS = Vector4d(0, 0, 0.025, 0);
-const Vector4d MOVELEFT = Vector4d(-0.025, 0, 0, 0);
-const Vector4d MOVERIGHT = Vector4d(0.025, 0, 0, 0);
-
-const double COEF = 0.02;
+const double COEF = 1;
 
 int main() {
     if( SDL_Init( SDL_INIT_EVERYTHING ) != 0 )
     {
         return 1;
     }
+    std::random_device rd;
+    std::mt19937 gen(rd());
+
     SDL_SetRelativeMouseMode(SDL_TRUE);
-    Vector4d pos(-5, -5, 0, 0);
+    Vector4d pos(0, -60, 0, 0);
     Vector4d v1(1, 0, 0, 0);
     Vector4d v2(0, 1, 0, 0);
     Camera camera(pos, v1, v2);
@@ -34,10 +32,10 @@ int main() {
     Vector4d point3(a, b, c, 1);
     renderer.drawTriangle(renderer.getScreenPoint(point1), renderer.getScreenPoint(point2), renderer.getScreenPoint(point3), 255, 100, 50);*/
 
-    double lower_bound = -1;
+    /*double lower_bound = -1;
     double upper_bound = 1;
     std::uniform_real_distribution<double> unif(lower_bound, upper_bound);
-    std::default_random_engine re;
+    std::default_random_engine re;*/
 
     int upper_int = 256 * 256 * 256;
     std::uniform_int_distribution<> uit(0, upper_int);
@@ -52,7 +50,7 @@ int main() {
     cur.addPoint(Vector4d(0, 0.5, -2.5, 1), 40000);
     cur.addPoint(Vector4d(0.5, 0.5, -2.5, 1), 40000);
     for (int i = 0; i < 6; ++i) {
-        cur.addEdge();
+        cur.addEdge(uit(gen));
     }
     cur.addToEdge(0, 0);
     cur.addToEdge(0, 1);
@@ -86,11 +84,12 @@ int main() {
 
     ObjectParser parser;
 
-    Object cur = parser.parse("box.obj");
+    Object cur = parser.parse("diamond.obj");
 
     renderer.addObject(cur);
 
     renderer.render();
+
 
     SDL_Event e;
     bool quit = false;
@@ -117,17 +116,19 @@ int main() {
                 renderer.render();
             }
             if (e.type == SDL_MOUSEMOTION) {
-                //std::cout << e.motion.xrel << ' ' << e.motion.yrel << '\n';
+                std::cout << e.motion.xrel << ' ' << e.motion.yrel << '\n';
                 double angle1 = e.motion.xrel / 1000.0 * angleX;
                 double angle2 = e.motion.yrel / 1000.0 * angleX;
                 renderer.rotateCamera(angle1, angle2);
                 renderer.updateCamera();
-                renderer.getInfo();
+                //renderer.getInfo();
                 renderer.render();
             }
             if (e.type == SDL_MOUSEBUTTONDOWN){
-                renderer.moveCamera(MOVEFORWARD);
-                renderer.render();
+                quit = true;
+                break;
+                /*renderer.moveCamera(MOVEFORWARD);
+                renderer.render();*/
                 /*double a, b;
                 a = unif(re);
                 b = unif(re);
@@ -152,7 +153,7 @@ int main() {
                 renderer.addObject(newObj);
                 renderer.render();*/
                 //renderer.drawTriangle(p1, p2, p3, c1, c2, c3);
-                std::cout << "NEXT\n";
+                //std::cout << "NEXT\n";
                 //quit = true;
             }
         }

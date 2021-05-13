@@ -27,11 +27,16 @@ public:
 
     void drawPoint(int x, int y, double z, Uint32 color);
     void drawPixelLine(Vector3d point1, Vector3d point2, Uint32 color1, Uint32 color2);
-    void drawTriangle(Vector3d point1, Vector3d point2, Vector3d point3, Uint32 color1, Uint32 color2, Uint32 color3);
+    void drawTriangle(Vector3d point1, Vector3d point2, Vector3d point3, Uint32 color1, Uint32 color2, Uint32 color3, Uint32 color);
 
 private:
+    int width;
+    int height;
+    int run;
+
     Renderer *renderer;
     SDL_Surface *surface;
     SDL_Window *window;
+    Buffer<int> cnt;
     Buffer<double> zBuffer;
 };

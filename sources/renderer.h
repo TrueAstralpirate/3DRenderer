@@ -18,9 +18,9 @@ public:
 
     void drawPoint(Vector4d point, Uint32 pixelColor);
     void drawLine(Vector4d point1, Vector4d point2, Uint32 pixelColor1, Uint32 pixelColor2);
-    void drawTriangle(Vector4d point1, Vector4d point2, Vector4d point3, Uint32 pixelColor1, Uint32 pixelColor2, Uint32 pixelColor3);
+    void drawTriangle(Vector4d point1, Vector4d point2, Vector4d point3, Uint32 pixelColor1, Uint32 pixelColor2, Uint32 pixelColor3, Uint32 color);
 
-    void drawEdge(Vector4d shift, std::vector<std::pair<Vector4d, Uint32>> edge);
+    void drawEdge(Vector4d shift, std::vector<std::pair<Vector4d, Uint32>> edge, Uint32 color);
     void drawObject(Object obj);
 
     void updateCamera();

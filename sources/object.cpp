@@ -20,16 +20,20 @@ void Object::addPoint(Vector4d point, Uint32 color) {
 }
 
 void Object::addToEdge(int edge, int node) {
-    edges[edge].push_back(node);
+    edges[edge].first.push_back(node);
 }
 
-void Object::addEdge() {
-    edges.push_back(std::vector<int>());
+void Object::addEdge(const Uint32 color) {
+    edges.push_back({std::vector<int>(), color});
+}
+
+Uint32 Object::getCol(int edge) {
+    return edges[edge].second;
 }
 
 std::vector<std::pair<Vector4d, Uint32>> Object::getEdge(int edge) {
     std::vector<std::pair<Vector4d, Uint32>> res;
-    for (int it : edges[edge]) {
+    for (int it : edges[edge].first) {
         res.push_back(nodes[it]);
     }
     return res;

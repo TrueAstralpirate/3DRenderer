@@ -130,17 +130,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named main
+# Target rules for targets named run
 
 # Build rule for target.
-main: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 main
-.PHONY : main
+run: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 run
+.PHONY : run
 
 # fast build rule for target.
-main/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
-.PHONY : main/fast
+run/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/build
+.PHONY : run/fast
 
 sources/camera.o: sources/camera.cpp.o
 
@@ -148,7 +148,7 @@ sources/camera.o: sources/camera.cpp.o
 
 # target to build an object file
 sources/camera.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/sources/camera.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/sources/camera.cpp.o
 .PHONY : sources/camera.cpp.o
 
 sources/camera.i: sources/camera.cpp.i
@@ -157,7 +157,7 @@ sources/camera.i: sources/camera.cpp.i
 
 # target to preprocess a source file
 sources/camera.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/sources/camera.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/sources/camera.cpp.i
 .PHONY : sources/camera.cpp.i
 
 sources/camera.s: sources/camera.cpp.s
@@ -166,35 +166,8 @@ sources/camera.s: sources/camera.cpp.s
 
 # target to generate assembly for a file
 sources/camera.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/sources/camera.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/sources/camera.cpp.s
 .PHONY : sources/camera.cpp.s
-
-sources/main.o: sources/main.cpp.o
-
-.PHONY : sources/main.o
-
-# target to build an object file
-sources/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/sources/main.cpp.o
-.PHONY : sources/main.cpp.o
-
-sources/main.i: sources/main.cpp.i
-
-.PHONY : sources/main.i
-
-# target to preprocess a source file
-sources/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/sources/main.cpp.i
-.PHONY : sources/main.cpp.i
-
-sources/main.s: sources/main.cpp.s
-
-.PHONY : sources/main.s
-
-# target to generate assembly for a file
-sources/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/sources/main.cpp.s
-.PHONY : sources/main.cpp.s
 
 sources/object.o: sources/object.cpp.o
 
@@ -202,7 +175,7 @@ sources/object.o: sources/object.cpp.o
 
 # target to build an object file
 sources/object.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/sources/object.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/sources/object.cpp.o
 .PHONY : sources/object.cpp.o
 
 sources/object.i: sources/object.cpp.i
@@ -211,7 +184,7 @@ sources/object.i: sources/object.cpp.i
 
 # target to preprocess a source file
 sources/object.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/sources/object.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/sources/object.cpp.i
 .PHONY : sources/object.cpp.i
 
 sources/object.s: sources/object.cpp.s
@@ -220,7 +193,7 @@ sources/object.s: sources/object.cpp.s
 
 # target to generate assembly for a file
 sources/object.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/sources/object.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/sources/object.cpp.s
 .PHONY : sources/object.cpp.s
 
 sources/renderer.o: sources/renderer.cpp.o
@@ -229,7 +202,7 @@ sources/renderer.o: sources/renderer.cpp.o
 
 # target to build an object file
 sources/renderer.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/sources/renderer.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/sources/renderer.cpp.o
 .PHONY : sources/renderer.cpp.o
 
 sources/renderer.i: sources/renderer.cpp.i
@@ -238,7 +211,7 @@ sources/renderer.i: sources/renderer.cpp.i
 
 # target to preprocess a source file
 sources/renderer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/sources/renderer.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/sources/renderer.cpp.i
 .PHONY : sources/renderer.cpp.i
 
 sources/renderer.s: sources/renderer.cpp.s
@@ -247,8 +220,35 @@ sources/renderer.s: sources/renderer.cpp.s
 
 # target to generate assembly for a file
 sources/renderer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/sources/renderer.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/sources/renderer.cpp.s
 .PHONY : sources/renderer.cpp.s
+
+sources/run.o: sources/run.cpp.o
+
+.PHONY : sources/run.o
+
+# target to build an object file
+sources/run.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/sources/run.cpp.o
+.PHONY : sources/run.cpp.o
+
+sources/run.i: sources/run.cpp.i
+
+.PHONY : sources/run.i
+
+# target to preprocess a source file
+sources/run.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/sources/run.cpp.i
+.PHONY : sources/run.cpp.i
+
+sources/run.s: sources/run.cpp.s
+
+.PHONY : sources/run.s
+
+# target to generate assembly for a file
+sources/run.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/sources/run.cpp.s
+.PHONY : sources/run.cpp.s
 
 sources/screen.o: sources/screen.cpp.o
 
@@ -256,7 +256,7 @@ sources/screen.o: sources/screen.cpp.o
 
 # target to build an object file
 sources/screen.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/sources/screen.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/sources/screen.cpp.o
 .PHONY : sources/screen.cpp.o
 
 sources/screen.i: sources/screen.cpp.i
@@ -265,7 +265,7 @@ sources/screen.i: sources/screen.cpp.i
 
 # target to preprocess a source file
 sources/screen.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/sources/screen.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/sources/screen.cpp.i
 .PHONY : sources/screen.cpp.i
 
 sources/screen.s: sources/screen.cpp.s
@@ -274,7 +274,7 @@ sources/screen.s: sources/screen.cpp.s
 
 # target to generate assembly for a file
 sources/screen.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/sources/screen.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/sources/screen.cpp.s
 .PHONY : sources/screen.cpp.s
 
 sources/world.o: sources/world.cpp.o
@@ -283,7 +283,7 @@ sources/world.o: sources/world.cpp.o
 
 # target to build an object file
 sources/world.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/sources/world.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/sources/world.cpp.o
 .PHONY : sources/world.cpp.o
 
 sources/world.i: sources/world.cpp.i
@@ -292,7 +292,7 @@ sources/world.i: sources/world.cpp.i
 
 # target to preprocess a source file
 sources/world.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/sources/world.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/sources/world.cpp.i
 .PHONY : sources/world.cpp.i
 
 sources/world.s: sources/world.cpp.s
@@ -301,7 +301,7 @@ sources/world.s: sources/world.cpp.s
 
 # target to generate assembly for a file
 sources/world.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/sources/world.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/sources/world.cpp.s
 .PHONY : sources/world.cpp.s
 
 # Help Target
@@ -312,19 +312,19 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... main"
+	@echo "... run"
 	@echo "... sources/camera.o"
 	@echo "... sources/camera.i"
 	@echo "... sources/camera.s"
-	@echo "... sources/main.o"
-	@echo "... sources/main.i"
-	@echo "... sources/main.s"
 	@echo "... sources/object.o"
 	@echo "... sources/object.i"
 	@echo "... sources/object.s"
 	@echo "... sources/renderer.o"
 	@echo "... sources/renderer.i"
 	@echo "... sources/renderer.s"
+	@echo "... sources/run.o"
+	@echo "... sources/run.i"
+	@echo "... sources/run.s"
 	@echo "... sources/screen.o"
 	@echo "... sources/screen.i"
 	@echo "... sources/screen.s"

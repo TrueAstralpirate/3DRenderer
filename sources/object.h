@@ -17,11 +17,13 @@ public:
     void addPoint(Vector4d point, Uint32 color);
     void addToEdge(int edge, int node);
 
-    void addEdge(void);
+    void addEdge(const Uint32 color);
+
+    Uint32 getCol(int edge);
 
     std::vector<std::pair<Vector4d, Uint32>> getEdge(int edge);
 private:
     Vector4d position;
     std::vector<std::pair<Vector4d, Uint32>> nodes;
-    std::vector<std::vector<int> > edges;
+    std::vector<std::pair<std::vector<int>, Uint32>> edges;
 };
