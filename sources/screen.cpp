@@ -14,8 +14,6 @@ Screen::Screen(Renderer *renderer, int width, int height) : width(width), height
         }
     }
     window = SDL_CreateWindow("Renderer", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN);
-    /*rend = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-    texture = SDL_CreateTexture(rend, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STREAMING, width, height);*/
     surface = SDL_GetWindowSurface(window);
     clear();
 };
@@ -25,10 +23,6 @@ Screen::~Screen() {
 }
 
 void Screen::setPixelColor(int x, int y, Uint32 pixelColor) {
-    /*Uint32 *target_pixel = (Uint32 *) ((Uint8 *) surface->pixels + y * surface->pitch + x * sizeof(*target_pixel));
-    *target_pixel = pixelColor;*/
-    //surface->pixels[y * surface->pitch + x] = pixelColor;
-    //colorBuffer(y, x) = pixelColor;
     Uint32* pixels = (Uint32*) surface->pixels;
     pixels[y * width + x] = pixelColor;
 }
@@ -38,22 +32,11 @@ void Screen::setPixelZ(int x, int y, double z) {
 }
 
 void Screen::clear() {
-    //size_t height = zBuffer.getHeight();
-    //size_t width = zBuffer.getWidth();
     SDL_memset(surface->pixels, 0, surface->h * surface->pitch);
     run++;
-    /*for (size_t y = 0; y < height; ++y) {
-        for (size_t x = 0; x < width; ++x) {
-            setPixelColor(x, y, 0);
-            setPixelZ(x, y, 20000000);
-        }
-    }*/
 }
 
 void Screen::update() {
-    /*SDL_UpdateTexture(texture, NULL, colorBuffer.getBuffer(), width * sizeof(Uint32));
-    SDL_RenderCopy(rend, texture, NULL, NULL);
-    SDL_RenderPresent(rend);*/
     SDL_UpdateWindowSurface(window);
 }
 
@@ -65,27 +48,21 @@ void Screen::drawPoint(int x, int y, double z, Uint32 pixelColor) {
         return;
     }
     if (z > zBuffer(y, x) + EPS) {
-        //std::cout << "HERE " << z << ' ' << zBuffer(y, x) << '\n';
         return;
     }
-    //std::cout << "DRAWING " << x << ' ' << y << ' ' << z << ' ' << pixelColor << '\n';
     setPixelColor(x, y, pixelColor);
     setPixelZ(x, y, z);
-    //update();
 }
 
 Vector3d Screen::getPixel(Vector4d point) {
     if (point[3] == 0.0) {
         return Vector3d(-1, -1, 3);
     }
-    /*std::cout << "TRANSFORM TO PIXEL\n";
-    std::cout << point << "\n";*/
     Vector3d result = point.head(3) / point[3];
     double pixelWidth = 2.0 / zBuffer.getWidth();
     double pixelHeight = 2.0 / zBuffer.getHeight();
     result[0] = floor((result[0] + 1.0) / pixelWidth);
     result[1] = floor((result[1] + 1.0) / pixelHeight);
-    //std::cout << result << '\n';
     return result;
 }
 
@@ -152,8 +129,6 @@ void Screen::drawTriangle(Vector3d point1, Vector3d point2, Vector3d point3, Uin
             double k2 = (double) (i - point1[1]) / lower_height;
             Vector3d A = point1 + k3 * (point3 - point1);
             Vector3d B = point1 + k2 * (point2 - point1);
-            //Uint32 colorA = mixColors(color1, color3, k3);
-            //Uint32 colorB = mixColors(color1, color2, k2);
             if (A[0] > B[0]) {
                 std::swap(A, B);
                 //std::swap(colorA, colorB);
@@ -162,7 +137,6 @@ void Screen::drawTriangle(Vector3d point1, Vector3d point2, Vector3d point3, Uin
             for (int j = std::max(0, (int) A[0]); j <= jBorder; ++j) {
                 double k = (j - A[0]) / std::max(1.0, B[0] - A[0]);
                 //Uint32 color = mixColors(colorA, colorB, k);
-                //std::cout << "DRAWING POINT " << i << ' ' << j << '\n';
                 drawPoint(j, i, A[2] * (1 - k) + B[2] * k, color);
             }
         }
@@ -187,14 +161,8 @@ void Screen::drawTriangle(Vector3d point1, Vector3d point2, Vector3d point3, Uin
             for (int j = std::max(0, (int) A[0]); j <= jBorder; ++j) {
                 double k = (j - A[0]) / std::max(1.0, B[0] - A[0]);
                 //Uint32 color = mixColors(colorA, colorB, k);
-                //std::cout << "DRAWING POINT " << i << ' ' << j << '\n';
                 drawPoint(j, i, A[2] * (1 - k) + B[2] * k, color);
             }
         }
     }
-    //SDL_UnlockSurface(surface);
-    /*drawPoint(point1[0], point1[1], -2, 255 << 8);
-    drawPoint(point2[0], point2[1], -2, 255 << 8);
-    drawPoint(point3[0], point3[1], -2, 255 << 8);*/
-    //update();
 }

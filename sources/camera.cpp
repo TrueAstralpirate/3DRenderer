@@ -88,11 +88,7 @@ void Camera::applyTransformToCamera(const Matrix4d transform) {
 }
 
 Vector4d Camera::transformPointToCameraBasis(Vector4d point) {
-    /*std::cout << "TRANSFORMING TO CAMERA BASIS:\n";
-    std::cout << point << '\n';*/
     point -= position;
-    //Vector4d res = fullBasis.inverse() * point;
-    //std::cout << res << '\n';
     return inversedFullBasis * point;
 }
 
@@ -119,7 +115,6 @@ void Camera::printCubeTransform() {
 }
 
 Vector4d Camera::transformToCube(Vector4d point) {
-    //point = transformPointToCameraBasis(point);
     return cubeTransform * point;
 }
 
@@ -141,9 +136,7 @@ double Camera::getZ(Vector4d point) {
 
 Vector4d Camera::fullProject(Vector4d point) {
     point = transformToCube(point);
-    /*std::cout << "TRANSFORMING TO SCREEN:\n";
-    std::cout << point << '\n';*/
-    if (point[3] != 0/*point[2] >= -1 && point[2] <= 1*/) {
+    if (point[3] != 0) {
         return point;
     }
     return Vector4d(0, 0, 1000000, 1);

@@ -43,7 +43,6 @@ public:
                     int x;
                     while (ss >> x) {
                         res.addToEdge(last, x - 1);
-                        //std::cout << last << ' ' << x - 1 << '\n';
                     }
                 }
             }

@@ -10,9 +10,7 @@ Renderer::Renderer(Camera camera, int width, int height) : camera(camera), scree
 };
 
 void Renderer::getInfo() {
-    std::cout << "HERE\n";
     camera.printFullBasis();
-    //camera.printCubeTransform();
 }
 
 Vector4d Renderer::getScreenPoint(Vector4d point) {
@@ -34,9 +32,6 @@ void Renderer::drawLine(Vector4d point1, Vector4d point2, Uint32 pixelColor1, Ui
 }
 
 void Renderer::drawTriangle(Vector4d point1, Vector4d point2, Vector4d point3, Uint32 pixelColor1, Uint32 pixelColor2, Uint32 pixelColor3, Uint32 color) {
-    /*std::cout << point1[0] << ' ' << point1[1] << ' ' << point1[2] << '\n';
-    std::cout << point2[0] << ' ' << point2[1] << ' ' << point2[2] << '\n';
-    std::cout << point3[0] << ' ' << point3[1] << ' ' << point3[2] << '\n';*/
     point1 = camera.transformPointToCameraBasis(point1);
     point2 = camera.transformPointToCameraBasis(point2);
     point3 = camera.transformPointToCameraBasis(point3);
@@ -75,13 +70,11 @@ void Renderer::drawTriangle(Vector4d point1, Vector4d point2, Vector4d point3, U
     Vector3d info1 = screen.getPixel(point1);
     Vector3d info2 = screen.getPixel(point2);
     Vector3d info3 = screen.getPixel(point3);
-    //std::cout << "WTF\n";
     screen.drawTriangle(info1, info2, info3, pixelColor1, pixelColor2, pixelColor3, color);
 }
 
 void Renderer::drawEdge(Vector4d shift, std::vector<std::pair<Vector4d, Uint32>> edge, Uint32 color) {
     for (int i = 1; i < (int) edge.size() - 1; ++i) {
-        //std::cout << "DRAW TRIANGLE " << i << '\n';
         drawTriangle(shift + edge[0].first, shift + edge[i].first, shift + edge[i + 1].first, edge[0].second, edge[i].second, edge[i + 1].second, color);
     }
 }
@@ -90,14 +83,12 @@ void Renderer::drawObject(Object obj) {
     int edgesCnt = obj.getCnt();
     Vector4d shift = obj.getPosition();
     for (int i = 0; i < edgesCnt; ++i) {
-        //std::cout << "DRAW EDGE " << i << '\n';
         drawEdge(shift, obj.getEdge(i), obj.getCol(i));
     }
 }
 
 void Renderer::updateCamera() {
     camera.createFullBasis();
-    //camera.updateCubeTransform(-1, 1, -1, 1);
 }
 
 void Renderer::update() {
@@ -124,7 +115,6 @@ void Renderer::render() {
     screen.clear();
     int sz = world.getSize();
     for (int i = 0; i < sz; ++i) {
-        //std::cout << "RENDER " << i << '\n';
         drawObject(world.getObject(i));
     }
     update();
