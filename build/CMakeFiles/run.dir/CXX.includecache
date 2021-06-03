@@ -1064,9 +1064,27 @@ IndexedViewMethods.h
 
 ../sources/ExternalLibraries/eigen/Eigen/src/plugins/MatrixCwiseUnaryOps.h
 
+/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/application.cpp
+iostream
+-
+application.h
+/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/application.h
+
+/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/application.h
+userControl.h
+/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/userControl.h
+
 /Users/savvabelyakov/Documents/Prog/3DRenderer/sources/buffer.h
 vector
 -
+
+/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/camera.cpp
+math.h
+-
+iostream
+-
+camera.h
+/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/camera.h
 
 /Users/savvabelyakov/Documents/Prog/3DRenderer/sources/camera.h
 math.h
@@ -1093,6 +1111,16 @@ random
 -
 Dense
 /Users/savvabelyakov/Documents/Prog/3DRenderer/sources/Dense
+object.h
+/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/object.h
+
+/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/renderer.cpp
+renderer.h
+/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/renderer.h
+SDL.h
+/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/SDL.h
+iostream
+-
 
 /Users/savvabelyakov/Documents/Prog/3DRenderer/sources/renderer.h
 vector
@@ -1107,13 +1135,11 @@ Dense
 /Users/savvabelyakov/Documents/Prog/3DRenderer/sources/Dense
 
 /Users/savvabelyakov/Documents/Prog/3DRenderer/sources/run.cpp
-renderer.h
-/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/renderer.h
-objectParser.h
-/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/objectParser.h
+math.h
+/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/math.h
+application.h
+/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/application.h
 iostream
--
-random
 -
 
 /Users/savvabelyakov/Documents/Prog/3DRenderer/sources/screen.h
@@ -1124,11 +1150,29 @@ SDL.h
 Dense
 /Users/savvabelyakov/Documents/Prog/3DRenderer/sources/Dense
 
+/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/userControl.cpp
+userControl.h
+/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/userControl.h
+string
+-
+iostream
+-
+
+/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/userControl.h
+SDL.h
+/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/SDL.h
+Dense
+/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/Dense
+time.h
+/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/time.h
+renderer.h
+/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/renderer.h
+
 /Users/savvabelyakov/Documents/Prog/3DRenderer/sources/world.h
 vector
 -
-object.h
-/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/object.h
+objectParser.h
+/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/objectParser.h
 
 /usr/local/Cellar/sdl2/2.0.10/include/SDL2/SDL.h
 SDL_main.h

@@ -10,7 +10,9 @@ using namespace Eigen;
 
 class Renderer {
 public:
-    Renderer(Camera camera, int width, int height);
+    Renderer();
+
+    Renderer(Camera *camera, Screen *screen, World *world);
 
     void getInfo();
 
@@ -18,24 +20,24 @@ public:
 
     void drawPoint(Vector4d point, Uint32 pixelColor);
     void drawLine(Vector4d point1, Vector4d point2, Uint32 pixelColor1, Uint32 pixelColor2);
-    void drawTriangle(Vector4d point1, Vector4d point2, Vector4d point3, Uint32 pixelColor1, Uint32 pixelColor2, Uint32 pixelColor3, Uint32 color);
+    void drawTriangle(Vector4d point1, Vector4d point2, Vector4d point3, Uint32 pixelColor1, Uint32 pixelColor2, Uint32 pixelColor3);
 
-    void drawEdge(Vector4d shift, std::vector<std::pair<Vector4d, Uint32>> edge, Uint32 color);
-    void drawObject(Object obj);
+    void drawEdge(Object &obj, std::pair<int, int> edgeBorders);
+    void drawObject(Object &obj);
 
-    void updateCamera();
     void update();
 
     void addObject(Object object);
+    void addFile(const std::string& s, Vector4d pos);
 
-    void moveFromBasis(const double coef, const int pos);
-    void moveCamera(const Vector4d move);
+    void moveFromBasis(double coef, int pos);
+    void moveCamera(Vector4d move);
     void rotateCamera(double angle1, double angle2);
 
     void render();
     
 private:
-    Camera camera;
-    Screen screen;
-    World world;
+    Camera *camera;
+    Screen *screen;
+    World *world;
 };

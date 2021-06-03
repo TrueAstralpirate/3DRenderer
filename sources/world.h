@@ -1,11 +1,13 @@
 #include <vector>
 
-#include "object.h"
+#include "objectParser.h"
 
 class World {
 public:
+    World();
+
     void addObject(Object object);
-    Object getObject(int pos);
+    Object& getObject(int pos);
 
     int getSize();
 

@@ -142,6 +142,33 @@ run/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/build
 .PHONY : run/fast
 
+sources/application.o: sources/application.cpp.o
+
+.PHONY : sources/application.o
+
+# target to build an object file
+sources/application.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/sources/application.cpp.o
+.PHONY : sources/application.cpp.o
+
+sources/application.i: sources/application.cpp.i
+
+.PHONY : sources/application.i
+
+# target to preprocess a source file
+sources/application.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/sources/application.cpp.i
+.PHONY : sources/application.cpp.i
+
+sources/application.s: sources/application.cpp.s
+
+.PHONY : sources/application.s
+
+# target to generate assembly for a file
+sources/application.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/sources/application.cpp.s
+.PHONY : sources/application.cpp.s
+
 sources/camera.o: sources/camera.cpp.o
 
 .PHONY : sources/camera.o
@@ -277,6 +304,33 @@ sources/screen.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/sources/screen.cpp.s
 .PHONY : sources/screen.cpp.s
 
+sources/userControl.o: sources/userControl.cpp.o
+
+.PHONY : sources/userControl.o
+
+# target to build an object file
+sources/userControl.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/sources/userControl.cpp.o
+.PHONY : sources/userControl.cpp.o
+
+sources/userControl.i: sources/userControl.cpp.i
+
+.PHONY : sources/userControl.i
+
+# target to preprocess a source file
+sources/userControl.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/sources/userControl.cpp.i
+.PHONY : sources/userControl.cpp.i
+
+sources/userControl.s: sources/userControl.cpp.s
+
+.PHONY : sources/userControl.s
+
+# target to generate assembly for a file
+sources/userControl.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/sources/userControl.cpp.s
+.PHONY : sources/userControl.cpp.s
+
 sources/world.o: sources/world.cpp.o
 
 .PHONY : sources/world.o
@@ -313,6 +367,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... run"
+	@echo "... sources/application.o"
+	@echo "... sources/application.i"
+	@echo "... sources/application.s"
 	@echo "... sources/camera.o"
 	@echo "... sources/camera.i"
 	@echo "... sources/camera.s"
@@ -328,6 +385,9 @@ help:
 	@echo "... sources/screen.o"
 	@echo "... sources/screen.i"
 	@echo "... sources/screen.s"
+	@echo "... sources/userControl.o"
+	@echo "... sources/userControl.i"
+	@echo "... sources/userControl.s"
 	@echo "... sources/world.o"
 	@echo "... sources/world.i"
 	@echo "... sources/world.s"

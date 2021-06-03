@@ -4,11 +4,13 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/application.cpp" "/Users/savvabelyakov/Documents/Prog/3DRenderer/build/CMakeFiles/run.dir/sources/application.cpp.o"
   "/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/camera.cpp" "/Users/savvabelyakov/Documents/Prog/3DRenderer/build/CMakeFiles/run.dir/sources/camera.cpp.o"
   "/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/object.cpp" "/Users/savvabelyakov/Documents/Prog/3DRenderer/build/CMakeFiles/run.dir/sources/object.cpp.o"
   "/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/renderer.cpp" "/Users/savvabelyakov/Documents/Prog/3DRenderer/build/CMakeFiles/run.dir/sources/renderer.cpp.o"
   "/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/run.cpp" "/Users/savvabelyakov/Documents/Prog/3DRenderer/build/CMakeFiles/run.dir/sources/run.cpp.o"
   "/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/screen.cpp" "/Users/savvabelyakov/Documents/Prog/3DRenderer/build/CMakeFiles/run.dir/sources/screen.cpp.o"
+  "/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/userControl.cpp" "/Users/savvabelyakov/Documents/Prog/3DRenderer/build/CMakeFiles/run.dir/sources/userControl.cpp.o"
   "/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/world.cpp" "/Users/savvabelyakov/Documents/Prog/3DRenderer/build/CMakeFiles/run.dir/sources/world.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")

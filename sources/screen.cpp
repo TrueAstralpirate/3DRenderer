@@ -7,7 +7,7 @@
 
 const double EPS = 0.0000000001;
 
-Screen::Screen(Renderer *renderer, int width, int height) : width(width), height(height), renderer(renderer), zBuffer(width, height), cnt(width, height), run(0) {
+Screen::Screen(int width, int height) : width(width), height(height), zBuffer(width, height), cnt(width, height), run(0) {
     for (size_t y = 0; y < height; ++y) {
         for (size_t x = 0; x < width; ++x) {
             cnt(y, x) = 0;
@@ -36,11 +36,19 @@ void Screen::clear() {
     run++;
 }
 
-void Screen::update() {
+void Screen::userView() {
     SDL_UpdateWindowSurface(window);
 }
 
-void Screen::drawPoint(int x, int y, double z, Uint32 pixelColor) {
+int Screen::getWidth() {
+    return width;
+}
+
+int Screen::getHeight() {
+    return height;
+}
+
+void Screen::drawPoint(const int& x, const int& y, const double& z, const Uint32& pixelColor) {
     if (cnt(y, x) != run) {
         setPixelColor(x, y, pixelColor);
         setPixelZ(x, y, z);
@@ -66,11 +74,23 @@ Vector3d Screen::getPixel(Vector4d point) {
     return result;
 }
 
-Uint32 Screen::mixColors(Uint32 color1, Uint32 color2, double t) {
-    Uint32 c1 = (double) (color1 & 255) * (1.0 - t) + (double) (color2 & 255) * t;
-    Uint32 c2 = (double) ((color1 >> 8) & 255) * (1.0 - t) + (double) ((color2 >> 8) & 255) * t;
-    Uint32 c3 = (double) ((color1 >> 16) & 255) * (1.0 - t) + (double) ((color2 >> 16) & 255) * t;
-    return (c3 << 16) + (c2 << 8) + c1;
+Uint32 Screen::intenseColor(Uint32 color, double intensity) {
+    Uint32 c1 = (double) (color & 255) * intensity;
+    Uint32 c2 = (double) ((color >> 8) & 255) * intensity;
+    Uint32 c3 = (double) ((color >> 16) & 255) * intensity;
+    return (c3 << 16) | (c2 << 8) | c1;
+}
+
+
+Uint32 Screen::mixColors(Uint32& color1, Uint32& color2, Uint32& color3, const double& a, const double& b, double& c) {
+    Uint32 c1 = (double) (color1 & 255) * a + (double) (color2 & 255) * b + (double) (color3 & 255) * c;
+    Uint32 c2 = (double) ((color1 >> 8) & 255) * a + (double) ((color2 >> 8) & 255) * b + (double) ((color3 >> 8) & 255) * c;
+    Uint32 c3 = (double) ((color1 >> 16) & 255) * a + (double) ((color2 >> 16) & 255) * b + (double) ((color3 >> 16) & 255) * c;
+    return (c3 << 16) | (c2 << 8) | c1;
+}
+
+double Screen::area(const Vector2d& v1, const Vector2d& v2) {
+    return v1[0] * v2[1] - v2[0] * v1[1];
 }
 
 void Screen::drawPixelLine(Vector3d point1, Vector3d point2, Uint32 pixelColor1, Uint32 pixelColor2) {
@@ -94,30 +114,43 @@ void Screen::drawPixelLine(Vector3d point1, Vector3d point2, Uint32 pixelColor1,
         double t = (x - point1[0]) / (double) std::max(1.0, (point2[0] - point1[0]));
         int y = point1[1] * (1.0 - t) + point2[1] * t;
         double z = point1[2] * (1.0 - t) + point2[2] * t;
-        Uint32 color = mixColors(pixelColor1, pixelColor2, t);
-        //std::cout << "HERE " << x << ' ' << y << ' ' << z << '\n';
+        //Uint32 color = mixColors(pixelColor1, pixelColor2, t, 1.0 - t);
+        Uint32 color = (1 << 24) - 1;
         if (steep) {
             drawPoint(y, x, z, color);
         } else {
             drawPoint(x, y, z, color);
         }
     }
-    update();
+    userView();
 }
 
-void Screen::drawTriangle(Vector3d point1, Vector3d point2, Vector3d point3, Uint32 color1, Uint32 color2, Uint32 color3, Uint32 color) {
+void Screen::drawTriangle(Vector3d& point1, Vector3d& point2, Vector3d& point3, Uint32& color1, Uint32& color2, Uint32& color3, double intensity) {
+    color1 = intenseColor(color1, intensity);
+    color2 = intenseColor(color2, intensity);
+    color3 = intenseColor(color3, intensity);
+
     if (point1[1] > point2[1]) {
         std::swap(point1, point2);
-        //std::swap(color1, color2);
+        std::swap(color1, color2);
     }
     if (point1[1] > point3[1]) {
         std::swap(point1, point3);
-        //std::swap(color1, color3);
+        std::swap(color1, color3);
     }
     if (point2[1] > point3[1]) {
         std::swap(point2, point3);
-        //std::swap(color2, color3);
+        std::swap(color2, color3);
     }
+
+    double denom = area(point2.head(2) - point1.head(2), point3.head(2) - point1.head(2));
+
+    if (denom == 0) {
+        return;
+    }
+
+    denom = 1.0 / denom;
+
     int triangle_height = point3[1] - point1[1] + 1;
     int lower_height = point2[1] - point1[1] + 1;
     if (lower_height == 0) {
@@ -131,13 +164,22 @@ void Screen::drawTriangle(Vector3d point1, Vector3d point2, Vector3d point3, Uin
             Vector3d B = point1 + k2 * (point2 - point1);
             if (A[0] > B[0]) {
                 std::swap(A, B);
-                //std::swap(colorA, colorB);
             }
             int jBorder = std::min((int) zBuffer.getWidth() - 1, (int) B[0]);
+            Vector2d p(std::max(0, (int) A[0]), i);
+            Vector2d p1 = p - point1.head(2);
+            Vector2d p2 = p - point2.head(2);
+            Vector2d p3 = p - point3.head(2);
+            double a = area(p2, p3) * denom;
+            double b = area(p1, p3) * denom;
+            double c = 1.0 - std::abs(a) - std::abs(b);
+            double da = (p3[1] - p2[1]) * denom;
+            double db = (p3[1] - p1[1]) * denom;
             for (int j = std::max(0, (int) A[0]); j <= jBorder; ++j) {
-                double k = (j - A[0]) / std::max(1.0, B[0] - A[0]);
-                //Uint32 color = mixColors(colorA, colorB, k);
-                drawPoint(j, i, A[2] * (1 - k) + B[2] * k, color);
+                drawPoint(j, i, std::abs(a) * point1[2] + std::abs(b) * point2[2] + c * point3[2], mixColors(color1, color2, color3, std::abs(a), std::abs(b), c)); // <
+                a += da;
+                b += db;
+                c = 1.0 - std::abs(a) - std::abs(b);
             }
         }
     }
@@ -151,17 +193,24 @@ void Screen::drawTriangle(Vector3d point1, Vector3d point2, Vector3d point3, Uin
             double k2 = (double) (i - point2[1]) / upper_height;
             Vector3d A = point1 + k3 * (point3 - point1);
             Vector3d B = point2 + k2 * (point3 - point2);
-            //Uint32 colorA = mixColors(color1, color3, k3);
-            //Uint32 colorB = mixColors(color2, color3, k2);
             if (A[0] > B[0]) {
                 std::swap(A, B);
-                //std::swap(colorA, colorB);
             }
             int jBorder = std::min((int) zBuffer.getWidth() - 1, (int) B[0]);
+            Vector2d p(std::max(0, (int) A[0]), i);
+            Vector2d p1 = p - point1.head(2);
+            Vector2d p2 = p - point2.head(2);
+            Vector2d p3 = p - point3.head(2);
+            double a = area(p2, p3) * denom;
+            double b = area(p1, p3) * denom;
+            double c = 1.0 - std::abs(a) - std::abs(b);
+            double da = (p3[1] - p2[1]) * denom;
+            double db = (p3[1] - p1[1]) * denom;
             for (int j = std::max(0, (int) A[0]); j <= jBorder; ++j) {
-                double k = (j - A[0]) / std::max(1.0, B[0] - A[0]);
-                //Uint32 color = mixColors(colorA, colorB, k);
-                drawPoint(j, i, A[2] * (1 - k) + B[2] * k, color);
+                drawPoint(j, i, std::abs(a) * point1[2] + std::abs(b) * point2[2] + c * point3[2], mixColors(color1, color2, color3, std::abs(a), std::abs(b), c)); // <
+                a += da;
+                b += db;
+                c = 1.0 - std::abs(a) - std::abs(b);
             }
         }
     }

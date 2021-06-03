@@ -11,7 +11,9 @@ class Renderer;
 
 class Screen {
 public:
-    Screen(Renderer *renderer, int width, int height);
+    Screen();
+
+    Screen(int width, int height);
 
     ~Screen();
 
@@ -19,22 +21,27 @@ public:
     void setPixelZ(int x, int y, double z);
 
     void clear();
-    void update();
+    void userView();
+
+    int getWidth();
+    int getHeight();
 
     Vector3d getPixel(Vector4d point);
 
-    Uint32 mixColors(Uint32 color1, Uint32 color2, double t);
+    Uint32 intenseColor(Uint32 color, double intensitivity);
+    Uint32 mixColors(Uint32& color1, Uint32& color2, Uint32& color3, const double& a, const double& b, double& c);
 
-    void drawPoint(int x, int y, double z, Uint32 color);
+    double area(const Vector2d& v1, const Vector2d& v2);
+
+    void drawPoint(const int& x, const int& y, const double& z, const Uint32& color);
     void drawPixelLine(Vector3d point1, Vector3d point2, Uint32 color1, Uint32 color2);
-    void drawTriangle(Vector3d point1, Vector3d point2, Vector3d point3, Uint32 color1, Uint32 color2, Uint32 color3, Uint32 color);
+    void drawTriangle(Vector3d& point1, Vector3d& point2, Vector3d& point3, Uint32& color1, Uint32& color2, Uint32& color3, double intensity);
 
 private:
     int width;
     int height;
     int run;
 
-    Renderer *renderer;
     SDL_Surface *surface;
     SDL_Window *window;
     Buffer<int> cnt;

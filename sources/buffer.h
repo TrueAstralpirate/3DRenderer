@@ -4,7 +4,7 @@ template <typename T>
 class Buffer {
 public:
     Buffer(size_t width, size_t height) : width(width), height(height) {
-        data = new T[width * height];
+        data = std::vector<T>(width * height);
     };
 
     T* getBuffer() {
@@ -31,5 +31,5 @@ private:
     size_t width;
     size_t height;
 
-    T* data;
+    std::vector<T> data;
 };

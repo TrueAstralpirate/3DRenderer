@@ -5,44 +5,48 @@
 
 #include "Dense"
 
+#include "object.h"
+
 class ObjectParser {
 public:
 
-    Object parse(std::string file) {
-        std::random_device rd;
-        std::mt19937 gen(rd());
-
-        int upper_int = 256 * 256 * 256;
-        std::uniform_int_distribution<> uit(0, upper_int);
-
+    Object parse(const std::string& file, Vector4d pos) {
         std::fstream parseFile;
         parseFile.open(file, std::ios::in);
 
-        Object res(Vector4d(0, 0, 0, 0));
+        Object res(pos);
         if (!parseFile) {
             std::cout << "No such file\n";
             return res;
         } else {
+            int cnt = 0;
             std::string s;
             while (1) {
                 getline(parseFile, s);
                 if (parseFile.eof()) {
                     break;
                 }
-                std::stringstream ss(s);
+                std::stringstream fileStream(s);
                 char c;
-                ss >> c;
+                fileStream >> c;
                 if (c == 'v') {
+                    cnt = (cnt + 1) % 3;
                     Vector4d cur;
-                    ss >> cur[0] >> cur[1] >> cur[2] >> cur[3];
+                    fileStream >> cur[0] >> cur[1] >> cur[2] >> cur[3];
                     cur[3] = 1;
-                    res.addPoint(cur, uit(gen));
+                    if (cnt % 3 == 0) {
+                        res.addPoint(cur, (1 << 8) - 1);
+                    } else if (cnt % 3 == 1) {
+                        res.addPoint(cur, (1 << 16) - (1 << 8));
+                    } else {
+                        res.addPoint(cur, (1 << 24) - (1 << 16));
+                    }
+                    //res.addPoint(cur, (1 << 24) - 1);
                 } else if (c == 'f') {
-                    res.addEdge(uit(gen));
-                    int last = res.getCnt() - 1;
+                    res.addEdge();
                     int x;
-                    while (ss >> x) {
-                        res.addToEdge(last, x - 1);
+                    while (fileStream >> x) {
+                        res.addToEdges(x - 1);
                     }
                 }
             }
