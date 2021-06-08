@@ -1,5 +1,5 @@
 # 3DRenderer
-1. git clone --recurse-submodules https://github.com/TrueAstralpirate/3DRenderer.git
+1. git clone --recurse-submodules -b project https://github.com/TrueAstralpirate/3DRenderer.git
 2. apt-get install libsdl2-dev или yum install SDL2-devel
 3. cd 3DRenderer
 4. cd build
