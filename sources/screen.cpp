@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <memory>
 #include <iostream>
 
 #include "screen.h"
@@ -7,12 +8,11 @@
 
 namespace Project {
 
-const double EPS = 0.0000000001;
-
-Screen::Screen(int width, int height) : width(width), height(height), zBuffer(width, height), cnt(width, height), run(0),
-                                        window(SDL_CreateWindow("Renderer", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN), SDL_DestroyWindow),
-                                        surface(SDL_GetWindowSurface(window.get()))
-{
+Screen::Screen(int width, int height) 
+    : width(width), height(height), zBuffer(width, height), cnt(width, height), run(0) {
+    assert(width >= 0 && "Negative width");
+    assert(height >= 0 && "Negative height");
+    window.reset(SDL_CreateWindow("Renderer", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN), SDL_DestroyWindow);
     for (size_t y = 0; y < height; ++y) {
         for (size_t x = 0; x < width; ++x) {
             cnt(y, x) = 0;
@@ -21,11 +21,8 @@ Screen::Screen(int width, int height) : width(width), height(height), zBuffer(wi
     clear();
 };
 
-Screen::~Screen() {}
-
 void Screen::setPixelColor(int x, int y, Uint32 pixelColor) {
-    Uint32* pixels = (Uint32*) surface->pixels;
-    //Uint32* pixels = (Uint32*) SDL_GetWindowSurface(window.get())->pixels;
+    Uint32* pixels = (Uint32*) SDL_GetWindowSurface(window.get())->pixels;
     pixels[y * width + x] = pixelColor;
 }
 
@@ -34,7 +31,7 @@ void Screen::setPixelZ(int x, int y, double z) {
 }
 
 void Screen::clear() {
-    SDL_memset(surface->pixels, 0, surface->h * surface->pitch);
+    SDL_memset(SDL_GetWindowSurface(window.get())->pixels, 0, SDL_GetWindowSurface(window.get())->h * SDL_GetWindowSurface(window.get())->pitch);
     ++run;
 }
 
@@ -108,7 +105,6 @@ void Screen::drawPixelLine(Eigen::Vector3d point1, Eigen::Vector3d point2, Uint3
         double t = (x - point1[0]) / (double) std::max(1.0, (point2[0] - point1[0]));
         int y = point1[1] * (1.0 - t) + point2[1] * t;
         double z = point1[2] * (1.0 - t) + point2[2] * t;
-        //Uint32 color = mixColors(pixelColor1, pixelColor2, t, 1.0 - t);
         Uint32 color = (1 << 24) - 1;
         if (steep) {
             drawPoint(y, x, z, color);
@@ -129,7 +125,7 @@ void Screen::drawHorizontalLine(Eigen::Vector3d& point1, Eigen::Vector3d& point2
     double c = 1.0 - std::abs(a) - std::abs(b);
     double da = (p3[1] - p2[1]) * triangle_area;
     double db = (p3[1] - p1[1]) * triangle_area;
-    Uint32* pixels = (Uint32*) surface->pixels + y * width + left;
+    Uint32* pixels = (Uint32*) SDL_GetWindowSurface(window.get())->pixels + y * width + left;
     for (int j = left; j <= right; ++j) {
         c = 1.0 - std::abs(a) - std::abs(b);
         double z = std::abs(a) * point1[2] + std::abs(b) * point2[2] + c * point3[2];

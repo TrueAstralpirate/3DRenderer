@@ -5,8 +5,6 @@
 
 namespace Project {
 
-const double INF = 1e18;
-
 class Renderer;
 
 class Screen {
@@ -14,8 +12,6 @@ public:
     Screen();
 
     Screen(int width, int height);
-
-    ~Screen();
 
     void setPixelColor(int x, int y, Uint32 color);
     void setPixelZ(int x, int y, double z);
@@ -39,12 +35,14 @@ public:
     void drawTriangle(Eigen::Vector3d& point1, Eigen::Vector3d& point2, Eigen::Vector3d& point3, Uint32& color1, Uint32& color2, Uint32& color3, double intensity);
 
 private:
+    static constexpr double INF = 1e18;
+    static constexpr double EPS = 0.0000000001;
+
     int width;
     int height;
     int run;
 
     std::shared_ptr<SDL_Window> window;
-    std::shared_ptr<SDL_Surface> surface;
     Buffer<int> cnt;
     Buffer<double> zBuffer;
 

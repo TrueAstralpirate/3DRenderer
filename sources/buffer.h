@@ -5,7 +5,9 @@ namespace Project {
 template <typename T>
 class Buffer {
 public:
-    Buffer(size_t width, size_t height) : width(width), height(height) {
+    Buffer(int width, int height) : width(width), height(height) {
+        assert(width >= 0 && "Negative width");
+        assert(height >= 0 && "Negative height");
         data = std::vector<T>(width * height);
     };
 
@@ -13,11 +15,11 @@ public:
         return data;
     }
 
-    size_t getWidth() const {
+    size_t getWidth() {
         return width;
     }
 
-    size_t getHeight() const {
+    size_t getHeight() {
         return height;
     }
 

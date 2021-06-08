@@ -11,6 +11,7 @@ void World::addObject(Object object) {
 }
 
 Object& World::getObject(int pos) {
+    assert(pos >= 0 && "Negative object");
     return objects[pos];
 }
 

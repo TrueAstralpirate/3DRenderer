@@ -28,6 +28,7 @@ void Object::addEdge() {
 }
 
 std::pair<Eigen::Vector4d, Uint32>& Object::operator[](int pos) {
+    assert(pos >= 0 && "Negative node");
     return nodes[edges[pos]];
 }
 
