@@ -11,7 +11,7 @@ int main(int argc, char* argv[]) {
     }
     SDL_SetRelativeMouseMode(SDL_TRUE);
 
-    Application app(argv);
+    Project::Application app(argv);
     app.run();
 
     SDL_Quit();

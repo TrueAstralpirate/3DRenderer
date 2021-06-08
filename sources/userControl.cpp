@@ -3,13 +3,15 @@
 #include <string>
 #include <iostream>
 
+namespace Project {
+
 UserControl::UserControl(Renderer *renderer) : renderer(renderer) {};
 
 void UserControl::addObject() {
     std::string s;
     double x, y, z;
     std::cin >> s >> x >> y >> z;
-    Vector4d pos(x, y, z, 0);
+    Eigen::Vector4d pos(x, y, z, 0);
     renderer->addFile("Objects/" + s, pos);
 }
 
@@ -62,4 +64,6 @@ bool UserControl::process(SDL_Event &event) {
         case SDL_MOUSEBUTTONDOWN: return false;
     }
     return true;
+}
+
 }

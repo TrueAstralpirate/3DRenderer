@@ -6,7 +6,7 @@
 
 #include "Dense"
 
-using namespace Eigen;
+namespace Project {
 
 class Renderer {
 public:
@@ -16,11 +16,11 @@ public:
 
     void getInfo();
 
-    Vector4d getScreenPoint(Vector4d point);
+    Eigen::Vector4d getScreenPoint(Eigen::Vector4d point);
 
-    void drawPoint(Vector4d point, Uint32 pixelColor);
-    void drawLine(Vector4d point1, Vector4d point2, Uint32 pixelColor1, Uint32 pixelColor2);
-    void drawTriangle(Vector4d point1, Vector4d point2, Vector4d point3, Uint32 pixelColor1, Uint32 pixelColor2, Uint32 pixelColor3);
+    void drawPoint(Eigen::Vector4d point, Uint32 pixelColor);
+    void drawLine(Eigen::Vector4d point1, Eigen::Vector4d point2, Uint32 pixelColor1, Uint32 pixelColor2);
+    void drawTriangle(Eigen::Vector4d point1, Eigen::Vector4d point2, Eigen::Vector4d point3, Uint32 pixelColor1, Uint32 pixelColor2, Uint32 pixelColor3);
 
     void drawEdge(Object &obj, std::pair<int, int> edgeBorders);
     void drawObject(Object &obj);
@@ -28,10 +28,10 @@ public:
     void update();
 
     void addObject(Object object);
-    void addFile(const std::string& s, Vector4d pos);
+    void addFile(const std::string& s, Eigen::Vector4d pos);
 
     void moveFromBasis(double coef, int pos);
-    void moveCamera(Vector4d move);
+    void moveCamera(Eigen::Vector4d move);
     void rotateCamera(double angle1, double angle2);
 
     void render();
@@ -41,3 +41,5 @@ private:
     Screen *screen;
     World *world;
 };
+
+}

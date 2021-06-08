@@ -2,6 +2,8 @@
 
 #include "objectParser.h"
 
+namespace Project {
+
 class World {
 public:
     World();
@@ -14,3 +16,5 @@ public:
 private:
     std::vector<Object> objects;
 };
+
+}

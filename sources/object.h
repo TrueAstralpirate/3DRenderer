@@ -3,28 +3,30 @@
 #include "SDL.h"
 #include "Dense"
 
-using namespace Eigen;
+namespace Project {
 
 class Object {
 public:
 
-    Object(Vector4d start);
+    Object(Eigen::Vector4d start);
 
-    Vector4d getPosition();
+    Eigen::Vector4d getPosition();
 
     int getCnt();
 
-    void addPoint(Vector4d point, Uint32 color);
+    void addPoint(Eigen::Vector4d point, Uint32 color);
     void addToEdges(int node);
 
     void addEdge();
 
-    std::pair<Vector4d, Uint32>& operator[](int pos);
+    std::pair<Eigen::Vector4d, Uint32>& operator[](int pos);
 
     std::pair<int, int> getEdge(int edge);
 private:
-    Vector4d position;
-    std::vector<std::pair<Vector4d, Uint32>> nodes;
+    Eigen::Vector4d position;
+    std::vector<std::pair<Eigen::Vector4d, Uint32>> nodes;
     std::vector<int> edges;
     std::vector<int> order;
 };
+
+}

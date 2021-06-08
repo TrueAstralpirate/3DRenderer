@@ -1,5 +1,7 @@
 #include "userControl.h"
 
+namespace Project {
+
 class Application {
 public:
     Application(char* argv[]);
@@ -13,3 +15,5 @@ private:
     Renderer renderer;
     UserControl control;
 };
+
+}

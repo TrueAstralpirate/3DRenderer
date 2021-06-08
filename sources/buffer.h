@@ -1,5 +1,7 @@
 #include <vector>
 
+namespace Project {
+
 template <typename T>
 class Buffer {
 public:
@@ -33,3 +35,5 @@ private:
 
     std::vector<T> data;
 };
+
+}

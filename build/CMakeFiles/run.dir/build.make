@@ -154,9 +154,22 @@ CMakeFiles/run.dir/sources/world.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/run.dir/sources/world.cpp.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/savvabelyakov/Documents/Prog/3DRenderer/sources/world.cpp -o CMakeFiles/run.dir/sources/world.cpp.s
 
+CMakeFiles/run.dir/sources/objectParser.cpp.o: CMakeFiles/run.dir/flags.make
+CMakeFiles/run.dir/sources/objectParser.cpp.o: ../sources/objectParser.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/savvabelyakov/Documents/Prog/3DRenderer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/run.dir/sources/objectParser.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/sources/objectParser.cpp.o -c /Users/savvabelyakov/Documents/Prog/3DRenderer/sources/objectParser.cpp
+
+CMakeFiles/run.dir/sources/objectParser.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/run.dir/sources/objectParser.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/savvabelyakov/Documents/Prog/3DRenderer/sources/objectParser.cpp > CMakeFiles/run.dir/sources/objectParser.cpp.i
+
+CMakeFiles/run.dir/sources/objectParser.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/run.dir/sources/objectParser.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/savvabelyakov/Documents/Prog/3DRenderer/sources/objectParser.cpp -o CMakeFiles/run.dir/sources/objectParser.cpp.s
+
 CMakeFiles/run.dir/sources/userControl.cpp.o: CMakeFiles/run.dir/flags.make
 CMakeFiles/run.dir/sources/userControl.cpp.o: ../sources/userControl.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/savvabelyakov/Documents/Prog/3DRenderer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/run.dir/sources/userControl.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/savvabelyakov/Documents/Prog/3DRenderer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/run.dir/sources/userControl.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/sources/userControl.cpp.o -c /Users/savvabelyakov/Documents/Prog/3DRenderer/sources/userControl.cpp
 
 CMakeFiles/run.dir/sources/userControl.cpp.i: cmake_force
@@ -169,7 +182,7 @@ CMakeFiles/run.dir/sources/userControl.cpp.s: cmake_force
 
 CMakeFiles/run.dir/sources/application.cpp.o: CMakeFiles/run.dir/flags.make
 CMakeFiles/run.dir/sources/application.cpp.o: ../sources/application.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/savvabelyakov/Documents/Prog/3DRenderer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/run.dir/sources/application.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/savvabelyakov/Documents/Prog/3DRenderer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/run.dir/sources/application.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/sources/application.cpp.o -c /Users/savvabelyakov/Documents/Prog/3DRenderer/sources/application.cpp
 
 CMakeFiles/run.dir/sources/application.cpp.i: cmake_force
@@ -188,6 +201,7 @@ run_OBJECTS = \
 "CMakeFiles/run.dir/sources/renderer.cpp.o" \
 "CMakeFiles/run.dir/sources/object.cpp.o" \
 "CMakeFiles/run.dir/sources/world.cpp.o" \
+"CMakeFiles/run.dir/sources/objectParser.cpp.o" \
 "CMakeFiles/run.dir/sources/userControl.cpp.o" \
 "CMakeFiles/run.dir/sources/application.cpp.o"
 
@@ -200,11 +214,12 @@ run: CMakeFiles/run.dir/sources/screen.cpp.o
 run: CMakeFiles/run.dir/sources/renderer.cpp.o
 run: CMakeFiles/run.dir/sources/object.cpp.o
 run: CMakeFiles/run.dir/sources/world.cpp.o
+run: CMakeFiles/run.dir/sources/objectParser.cpp.o
 run: CMakeFiles/run.dir/sources/userControl.cpp.o
 run: CMakeFiles/run.dir/sources/application.cpp.o
 run: CMakeFiles/run.dir/build.make
 run: CMakeFiles/run.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/savvabelyakov/Documents/Prog/3DRenderer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable run"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/savvabelyakov/Documents/Prog/3DRenderer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable run"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/run.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -223,6 +223,33 @@ sources/object.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/sources/object.cpp.s
 .PHONY : sources/object.cpp.s
 
+sources/objectParser.o: sources/objectParser.cpp.o
+
+.PHONY : sources/objectParser.o
+
+# target to build an object file
+sources/objectParser.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/sources/objectParser.cpp.o
+.PHONY : sources/objectParser.cpp.o
+
+sources/objectParser.i: sources/objectParser.cpp.i
+
+.PHONY : sources/objectParser.i
+
+# target to preprocess a source file
+sources/objectParser.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/sources/objectParser.cpp.i
+.PHONY : sources/objectParser.cpp.i
+
+sources/objectParser.s: sources/objectParser.cpp.s
+
+.PHONY : sources/objectParser.s
+
+# target to generate assembly for a file
+sources/objectParser.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/sources/objectParser.cpp.s
+.PHONY : sources/objectParser.cpp.s
+
 sources/renderer.o: sources/renderer.cpp.o
 
 .PHONY : sources/renderer.o
@@ -376,6 +403,9 @@ help:
 	@echo "... sources/object.o"
 	@echo "... sources/object.i"
 	@echo "... sources/object.s"
+	@echo "... sources/objectParser.o"
+	@echo "... sources/objectParser.i"
+	@echo "... sources/objectParser.s"
 	@echo "... sources/renderer.o"
 	@echo "... sources/renderer.i"
 	@echo "... sources/renderer.s"

@@ -1078,14 +1078,6 @@ userControl.h
 vector
 -
 
-/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/camera.cpp
-math.h
--
-iostream
--
-camera.h
-/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/camera.h
-
 /Users/savvabelyakov/Documents/Prog/3DRenderer/sources/camera.h
 math.h
 -
@@ -1114,14 +1106,6 @@ Dense
 object.h
 /Users/savvabelyakov/Documents/Prog/3DRenderer/sources/object.h
 
-/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/renderer.cpp
-renderer.h
-/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/renderer.h
-SDL.h
-/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/SDL.h
-iostream
--
-
 /Users/savvabelyakov/Documents/Prog/3DRenderer/sources/renderer.h
 vector
 -
@@ -1134,14 +1118,6 @@ world.h
 Dense
 /Users/savvabelyakov/Documents/Prog/3DRenderer/sources/Dense
 
-/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/run.cpp
-math.h
-/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/math.h
-application.h
-/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/application.h
-iostream
--
-
 /Users/savvabelyakov/Documents/Prog/3DRenderer/sources/screen.h
 buffer.h
 /Users/savvabelyakov/Documents/Prog/3DRenderer/sources/buffer.h
@@ -1149,14 +1125,6 @@ SDL.h
 /Users/savvabelyakov/Documents/Prog/3DRenderer/sources/SDL.h
 Dense
 /Users/savvabelyakov/Documents/Prog/3DRenderer/sources/Dense
-
-/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/userControl.cpp
-userControl.h
-/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/userControl.h
-string
--
-iostream
--
 
 /Users/savvabelyakov/Documents/Prog/3DRenderer/sources/userControl.h
 SDL.h

@@ -5,6 +5,8 @@
 
 #include "renderer.h"
 
+namespace Project {
+
 class UserControl {
 public:
     UserControl();
@@ -34,3 +36,5 @@ private:
 
     Renderer *renderer;
 };
+
+}

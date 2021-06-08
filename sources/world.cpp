@@ -2,6 +2,8 @@
 
 #include "world.h"
 
+namespace Project {
+
 World::World() {};
 
 void World::addObject(Object object) {
@@ -14,4 +16,6 @@ Object& World::getObject(int pos) {
 
 int World::getSize() {
     return (int) objects.size();
+}
+
 }

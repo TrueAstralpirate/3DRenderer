@@ -2,39 +2,39 @@
 
 #include "Dense"
 
-using namespace Eigen;
+namespace Project {
 
 class Camera {
 public:
     Camera();
 
-    Camera(Vector4d position, double rotX, double rotY, double rotZ);
+    Camera(Eigen::Vector4d position, double rotX, double rotY, double rotZ);
 
-    void move(Vector4d shift);
+    void move(Eigen::Vector4d shift);
     void moveFromBasis(double coef, int pos);
-    void rotateBasis(double angle1, double angle2);
+    void rotateBasis(double rotateXAngle, double rotateYAngle);
 
     void normalizeCameraBasis();
     void createFullBasis();
     void updateFullBasis();
     void printFullBasis();
-    void applyTransformToCamera(Matrix4d transform);
+    void applyTransformToCamera(Eigen::Matrix4d transform);
 
-    Vector4d transformPointToCameraBasis(Vector4d point);
-    Vector4d transformToNearPlane(Vector4d point);
+    Eigen::Vector4d transformPointToCameraBasis(Eigen::Vector4d point);
+    Eigen::Vector4d transformToNearPlane(Eigen::Vector4d point);
 
     void updateCubeTransform(double l, double r, double b, double t);
     void printCubeTransform();
-    Vector4d transformToCube(Vector4d point);
-    Vector2d projectToScreen(Vector4d point);
+    Eigen::Vector4d transformToCube(Eigen::Vector4d point);
+    Eigen::Vector2d projectToScreen(Eigen::Vector4d point);
 
-    double getZ(Vector4d point);
+    double getZ(Eigen::Vector4d point);
     double getXAngle();
     double getYAngle();
 
-    Vector3d getLightVector();
+    Eigen::Vector3d getLightVector();
 
-    Vector4d fullProject(Vector4d point);
+    Eigen::Vector4d fullProject(Eigen::Vector4d point);
 
 private:
     static constexpr double fieldOfView = M_PI / 4.0;
@@ -44,11 +44,13 @@ private:
     static constexpr double screenWidth = 1.0;
     static constexpr double screenHeight = screenWidth / displayRatio;
 
-    MatrixXd shortBasis;
-    Matrix4d fullBasis;
-    Matrix4d inversedFullBasis;
+    Eigen::MatrixXd shortBasis;
+    Eigen::Matrix4d fullBasis;
+    Eigen::Matrix4d inversedFullBasis;
 
-    Vector4d position;
+    Eigen::Vector4d position;
 
-    Matrix4d cubeTransform;
+    Eigen::Matrix4d cubeTransform;
 };
+
+}

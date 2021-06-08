@@ -7,6 +7,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/application.cpp" "/Users/savvabelyakov/Documents/Prog/3DRenderer/build/CMakeFiles/run.dir/sources/application.cpp.o"
   "/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/camera.cpp" "/Users/savvabelyakov/Documents/Prog/3DRenderer/build/CMakeFiles/run.dir/sources/camera.cpp.o"
   "/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/object.cpp" "/Users/savvabelyakov/Documents/Prog/3DRenderer/build/CMakeFiles/run.dir/sources/object.cpp.o"
+  "/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/objectParser.cpp" "/Users/savvabelyakov/Documents/Prog/3DRenderer/build/CMakeFiles/run.dir/sources/objectParser.cpp.o"
   "/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/renderer.cpp" "/Users/savvabelyakov/Documents/Prog/3DRenderer/build/CMakeFiles/run.dir/sources/renderer.cpp.o"
   "/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/run.cpp" "/Users/savvabelyakov/Documents/Prog/3DRenderer/build/CMakeFiles/run.dir/sources/run.cpp.o"
   "/Users/savvabelyakov/Documents/Prog/3DRenderer/sources/screen.cpp" "/Users/savvabelyakov/Documents/Prog/3DRenderer/build/CMakeFiles/run.dir/sources/screen.cpp.o"
