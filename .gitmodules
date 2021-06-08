@@ -1,0 +1,3 @@
+[submodule "sources/ExternalLibraries/eigen"]
+	path = sources/ExternalLibraries/eigen
+	url = https://github.com/libigl/eigen.git
