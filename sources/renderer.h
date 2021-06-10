@@ -6,36 +6,40 @@
 
 #include "Dense"
 
-using namespace Eigen;
+namespace Project {
 
 class Renderer {
 public:
-    Renderer(Camera camera, int width, int height);
+    Renderer();
+
+    Renderer(Camera *camera, Screen *screen, World *world);
 
     void getInfo();
 
-    Vector4d getScreenPoint(Vector4d point);
+    Eigen::Vector4d getScreenPoint(Eigen::Vector4d point);
 
-    void drawPoint(Vector4d point, Uint32 pixelColor);
-    void drawLine(Vector4d point1, Vector4d point2, Uint32 pixelColor1, Uint32 pixelColor2);
-    void drawTriangle(Vector4d point1, Vector4d point2, Vector4d point3, Uint32 pixelColor1, Uint32 pixelColor2, Uint32 pixelColor3, Uint32 color);
+    void drawPoint(Eigen::Vector4d point, Uint32 pixelColor);
+    void drawLine(Eigen::Vector4d point1, Eigen::Vector4d point2, Uint32 pixelColor1, Uint32 pixelColor2);
+    void drawTriangle(Eigen::Vector4d point1, Eigen::Vector4d point2, Eigen::Vector4d point3, Uint32 pixelColor1, Uint32 pixelColor2, Uint32 pixelColor3);
 
-    void drawEdge(Vector4d shift, std::vector<std::pair<Vector4d, Uint32>> edge, Uint32 color);
-    void drawObject(Object obj);
+    void drawEdge(Object &obj, std::pair<int, int> edgeBorders);
+    void drawObject(Object &obj);
 
-    void updateCamera();
     void update();
 
     void addObject(Object object);
+    void addFile(const std::string& s, Eigen::Vector4d pos);
 
-    void moveFromBasis(const double coef, const int pos);
-    void moveCamera(const Vector4d move);
+    void moveFromBasis(double coef, int pos);
+    void moveCamera(Eigen::Vector4d move);
     void rotateCamera(double angle1, double angle2);
 
     void render();
     
 private:
-    Camera camera;
-    Screen screen;
-    World world;
+    Camera *camera;
+    Screen *screen;
+    World *world;
 };
+
+}

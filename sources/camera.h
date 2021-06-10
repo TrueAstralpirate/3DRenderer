@@ -2,56 +2,55 @@
 
 #include "Dense"
 
-using namespace Eigen;
-
-const double pi = acos(-1);
+namespace Project {
 
 class Camera {
 public:
+    Camera();
 
-    Camera(Vector4d position, Vector4d v1, Vector4d v2);
+    Camera(Eigen::Vector4d position, double rotX, double rotY, double rotZ);
 
-    void move(Vector4d shift);
-    void moveFromBasis(const double coef, const int pos);
-    void rotate(const Vector3d axis, double angle);
-    void rotateX(const double angle);
-    void rotateY(const double angle);
-    void rotateBasis(const double angle1, const double angle2);
+    void move(Eigen::Vector4d shift);
+    void moveFromBasis(double coef, int pos);
+    void rotateBasis(double rotateXAngle, double rotateYAngle);
 
     void normalizeCameraBasis();
     void createFullBasis();
+    void updateFullBasis();
     void printFullBasis();
-    void applyTransformToCamera(const Matrix4d transform);
+    void applyTransformToCamera(Eigen::Matrix4d transform);
 
-    Vector4d transformPointToCameraBasis(Vector4d point);
-    Vector4d transformToNearPlane(Vector4d point);
+    Eigen::Vector4d transformPointToCameraBasis(Eigen::Vector4d point);
+    Eigen::Vector4d transformToNearPlane(Eigen::Vector4d point);
 
     void updateCubeTransform(double l, double r, double b, double t);
     void printCubeTransform();
-    Vector4d transformToCube(Vector4d point);
-    Vector2d projectToScreen(Vector4d point);
+    Eigen::Vector4d transformToCube(Eigen::Vector4d point);
+    Eigen::Vector2d projectToScreen(Eigen::Vector4d point);
 
-    double getZ(Vector4d point);
+    double getZ(Eigen::Vector4d point);
     double getXAngle();
     double getYAngle();
 
-    Vector4d fullProject(Vector4d point);
+    Eigen::Vector3d getLightVector();
+
+    Eigen::Vector4d fullProject(Eigen::Vector4d point);
 
 private:
-    const Vector2d defaultPixel = Vector2d(-2, -2);
+    static constexpr double fieldOfView = M_PI / 4.0;
+    static constexpr double nearPlaneDistance = 1.0;
+    static constexpr double farPlaneDistance = 100.0;
+    static constexpr double displayRatio = 16.0 / 10.0; // Display ratio
+    static constexpr double screenWidth = 1.0;
+    static constexpr double screenHeight = screenWidth / displayRatio;
 
-    const double nearPlaneDistance = 1.0;
-    const double fieldOfView = pi / 4.0;
-    const double farPlaneDistance = 100.0;
-    const double displayRatio = 16.0 / 10.0; // Display ratio
-    const double screenWidth = 1.0;
-    const double screenHeight = screenWidth / displayRatio;
+    Eigen::MatrixXd shortBasis;
+    Eigen::Matrix4d fullBasis;
+    Eigen::Matrix4d inversedFullBasis;
 
-    MatrixXd shortBasis;
-    Matrix4d fullBasis;
-    Matrix4d inversedFullBasis;
+    Eigen::Vector4d position;
 
-    Vector4d position = Vector4d(0, 0, 0, 0);
-
-    Matrix4d cubeTransform;
+    Eigen::Matrix4d cubeTransform;
 };
+
+}
